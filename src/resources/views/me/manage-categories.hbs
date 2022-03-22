@@ -1,0 +1,31 @@
+<div class="mt-4">
+  <h3>
+    Khóa học của tôi
+  </h3>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Created Time:</th>
+        <th scope="col" colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each categories}}
+        <tr>
+          <th scope="row">{{sum 1 @index}}</th>
+          <td>{{this.categoryName}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.createdAt}}</td>
+          <td><a
+              href="/categories/{{this._id}}/edit"
+              class="btn btn-link"
+            >Edit</a></td>
+          <td><a href="" class="btn btn-link">Delete</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
