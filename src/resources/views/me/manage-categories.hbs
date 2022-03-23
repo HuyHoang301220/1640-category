@@ -23,9 +23,66 @@
               href="/categories/{{this._id}}/edit"
               class="btn btn-link"
             >Edit</a></td>
-          <td><a href="" class="btn btn-link">Delete</a></td>
+          <td><a
+              href=""
+              class="btn btn-link"
+              data-toggle="modal"
+              data-target="#delete-category-modal"
+              data-id="{{this._id}}"
+            >Delete</a></td>
         </tr>
       {{/each}}
     </tbody>
   </table>
 </div>
+
+{{! Confirm delete category }}
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal" id="delete-category-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Category ? </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You definitely want to delete this category ?
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="btn-delete-category"
+          class="btn btn-danger"
+        >Delete</button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! Delete hidden form }}
+<form name="delete-category-form" method="POST"></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', ()=>{ var categoryId; var
+  deleteForm = document.forms['delete-category-form'];
+  $('#delete-category-modal').on('show.bs.modal', (event) =>{ var button=
+  $(event.relatedTarget); categoryId = button.data('id'); }); var
+  btnDeleteCategory = document.getElementById('btn-delete-category');
+  btnDeleteCategory.onclick = ()=> { deleteForm.action = '/categories/' +
+  categoryId + '?_method=DELETE'; deleteForm.submit(); } })
+</script>

@@ -36,5 +36,10 @@ class CategoryController{
         .then(()=> res.redirect('/me/manage/categories'))
         .catch(next)
     }
+    delete(req,res, next){
+        Category.deleteOne({_id: req.params.id })
+        .then(()=> res.redirect('back'))
+        .catch(next)
+    }
 }
 module.exports = new CategoryController();

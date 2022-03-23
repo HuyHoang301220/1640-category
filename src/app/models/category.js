@@ -6,9 +6,9 @@ mongoose.plugin(slug);
 const Schema = mongoose.Schema;
 
 const Category = new Schema({
-    categoryName: {type: String, required: true},
+    categoryName: {type: String, required: true, unique: true},
     description: {type: String, maxlength: 255},
-    slug: {type: String, slug: 'categoryName', unique: true}
+    slug: {type: String, slug: 'categoryName'}
 },{
     timestamps: true
 })
